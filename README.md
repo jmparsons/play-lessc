@@ -1,4 +1,4 @@
-# Lessc Plugin
+# play-lessc
 This [sbt][sbt] plugin for [Play 2.1.x][play] provides the ability to use lessc command line tools to compile less through node instead of the default Rhino.
 
 # Prerequisites
@@ -6,7 +6,7 @@ This plugin requires lessc in this case installed globally through node.js and n
 
     npm install -g lessc
 
-# Istallation
+# Installation
 Add the resolver and sbt plugin to your `project/pugins.sbt` file:
 
     resolvers += "JMParsons Releases" at "http://jmparsons.github.io/releases/"
@@ -29,8 +29,15 @@ Set the default lessEntryPoints to Nil and put in your custom ones into lesscEnt
       lesscEntryPoints <<= baseDirectory(customLessEntryPoints)
     )
 
+## Credits
+This plugin is based off of:
+[play-stylus][play-stylus]
+[play-sass][play-sass]
+
 ## License
 MIT: <http://jmparsons.mit-license.org> - [@jmparsons](http://twitter.com/jmparsons)
 
+[play-sass]: https://github.com/jlitola/play-sass
+[play-stylus]: https://github.com/patiencelabs/play-stylus
 [play]: http://www.playframework.org/
 [sbt]: https://github.com/harrah/xsbt
