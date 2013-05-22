@@ -18,7 +18,7 @@ object LesscPlugin extends Plugin {
 
   override lazy val settings = Seq(
     lesscEntryPoints <<= (sourceDirectory in Compile).apply(base => ((base / "assets" ** "*.less") --- base / "assets" ** "_*")),
-    lesscOptions := Seq.empty[String],
+    lesscOptions := Seq("--no-color"),
     resourceGenerators in Compile <+= LesscWatcher
   )
 
