@@ -29,6 +29,10 @@ Set the default lessEntryPoints to Nil and put in your custom ones into lesscEnt
       lesscEntryPoints <<= baseDirectory(customLessEntryPoints)
     )
 
+Less options can be passed in using `lesscOptions`:
+
+    lesscOptions := Seq("--no-color")
+
 ## Credits
 This plugin is based off of:
 [play-stylus][play-stylus]
