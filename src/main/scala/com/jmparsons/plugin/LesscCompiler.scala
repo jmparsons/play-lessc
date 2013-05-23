@@ -9,8 +9,9 @@ object LesscCompiler {
   def compile(lesscFile: File, opts: Seq[String]): (String, Option[String], Seq[File]) = {
     val options = opts.filter { _ != "rjs" }
     try {
-      val cssOutput = captureOutput((Seq("lessc ", lesscFile) ++ options).mkString(" ") #< lesscFile)
-      val compressedCssOutput = captureOutput((Seq("lessc -x", lesscFile) ++ options).mkString(" ") #< lesscFile)
+      val cmd = (Seq("lessc") ++ options ++ Seq(lesscFile)).mkString(" ")
+      val cssOutput = captureOutput(cmd #< lesscFile)
+      val compressedCssOutput = captureOutput((Seq("lessc -x") ++ options ++ Seq(lesscFile)).mkString(" ") #< lesscFile)
       (cssOutput, Some(compressedCssOutput), Seq(lesscFile))
     } catch {
       case e: LesscCompilationException => {

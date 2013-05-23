@@ -18,20 +18,20 @@ Import the plugin file into your Build.scala to override settings:
 
     import com.jmparsons.plugin.LesscPlugin._
 
-Set the default lessEntryPoints to Nil and put in your custom ones into lesscEntryPoints:
+Set the default `lessEntryPoints` to `Nil` and put in your custom ones into lesscEntryPoints:
 
     def customLessEntryPoints(base: File): PathFinder = (
       (base / "app" / "assets" / "stylesheets" * "*.less")
     )
 
     lazy val main = play.Project(appName, appVersion, mainDeps).settings(
-      lessEntryPoints := Nil,
-      lesscEntryPoints <<= baseDirectory(customLessEntryPoints)
+      lessEntryPoints in Compile := Nil,
+      lesscEntryPoints in Compile <<= baseDirectory(customLessEntryPoints)
     )
 
 Less options can be passed in using `lesscOptions`:
 
-    lesscOptions := Seq("--no-color")
+    lesscOptions in Compile := Seq("--no-color")
 
 ## Credits
 This plugin is based off of [play-stylus][play-stylus] and [play-sass][play-sass].

@@ -12,7 +12,7 @@ object LesscPlugin extends Plugin {
     (_ ** "*.less"),
     lesscEntryPoints in Compile,
     { (name, min) => name.replace(".less", if (min) ".min.css" else ".css") },
-    { LesscCompiler.compile _ },
+    { (file, options) => LesscCompiler.compile(file, options) },
     lesscOptions in Compile
   )
 
