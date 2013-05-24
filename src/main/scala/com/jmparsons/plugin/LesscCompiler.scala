@@ -12,8 +12,8 @@ object LesscCompiler {
     val options = opts.filter { o => (o != "rjs") && (o != "--verbose") }
     try {
       val cmd = (Seq("lessc") ++ options ++ Seq(lesscFile.getPath)).mkString(" ")
-      if (verbose) println("+ " + cmd)
-
+      if (verbose)
+        println( (Seq("lessc: wrote") ++ options ++ Seq(lesscFile.getPath)).mkString(" ") )
       val cssOutput = captureOutput(cmd)
       val compressedCssOutput = captureOutput((Seq("lessc -x") ++ options ++ Seq(lesscFile)).mkString(" "))
       (cssOutput, Some(compressedCssOutput), Seq(lesscFile))
