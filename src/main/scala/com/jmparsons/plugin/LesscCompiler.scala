@@ -13,7 +13,7 @@ object LesscCompiler {
     try {
       val cmd = (Seq("lessc") ++ options ++ Seq(lesscFile.getPath)).mkString(" ")
       if (verbose)
-        println( (Seq("lessc: wrote") ++ options ++ Seq(lesscFile.getPath)).mkString(" ") )
+        println("+ " + cmd)
       val cssOutput = captureOutput(cmd)
       val compressedCssOutput = captureOutput((Seq("lessc -x") ++ options ++ Seq(lesscFile)).mkString(" "))
       (cssOutput, Some(compressedCssOutput), Seq(lesscFile))
