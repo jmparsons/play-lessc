@@ -33,7 +33,7 @@ Less options can be passed in using `lesscOptions`:
 
     lesscOptions in Compile := Seq("--no-color")
 
-The `--verbose` option displays each `lessc` command into the console:
+The `--verbose` option outputs each `lessc` command into the console:
 
     lesscOptions in Compile := Seq("--no-color", "--verbose")
 
