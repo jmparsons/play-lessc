@@ -11,7 +11,7 @@ Add the resolver and sbt plugin to your `project/pugins.sbt` file:
 
     resolvers += "JMParsons Releases" at "http://jmparsons.github.io/releases/"
 
-    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.0.2")
+    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.0.3")
 
 # Usage
 Import the plugin file into your Build.scala to override settings:
@@ -33,8 +33,7 @@ Less options can be passed in using `lesscOptions`:
 
     lesscOptions in Compile := Seq("--no-color")
 
-A special `--verbose` option causes the plugin to display each `lessc`
-command line on the console. For instance:
+The `--verbose` option displays each `lessc` command with applied options into the console:
 
     lesscOptions in Compile := Seq("--no-color", "--verbose")
 
