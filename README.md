@@ -26,7 +26,7 @@ Set the default `lessEntryPoints` to `Nil` and put in your custom ones into less
 
     lazy val main = play.Project(appName, appVersion, mainDeps).settings(
       lessEntryPoints := Nil,
-      lesscEntryPoints <<= baseDirectory(customLessEntryPoints)
+      lesscEntryPoints in Compile <<= baseDirectory(customLessEntryPoints)
     )
 
 Less options can be passed in using `lesscOptions`:
