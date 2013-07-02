@@ -16,7 +16,7 @@ object LesscCompiler {
         println("+ " + cmd)
       val cssOutput = captureOutput(cmd)
       val compressedCssOutput = captureOutput((Seq("lessc -x") ++ options ++ Seq(lesscFile)).mkString(" "))
-      (cssOutput, Some(compressedCssOutput), Seq(lesscFile))
+      (cssOutput.trim, Some(compressedCssOutput.trim), Seq(lesscFile))
     } catch {
       case e: LesscCompilationException => {
         throw AssetCompilationException(e.file.orElse(Some(lesscFile)), "Lessc compiler: " + e.message, Some(e.line), Some(e.column))

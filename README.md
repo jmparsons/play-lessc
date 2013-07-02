@@ -11,7 +11,7 @@ Add the resolver and sbt plugin to your `project/pugins.sbt` file:
 
     resolvers += "JMParsons Releases" at "http://jmparsons.github.io/releases/"
 
-    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.0.3")
+    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.0.4")
 
 # Usage
 Import the plugin file into your Build.scala to override settings:
@@ -37,6 +37,12 @@ The `--verbose` option outputs each `lessc` command into the console:
 
     lesscOptions in Compile := Seq("--no-color", "--verbose")
 
+
+## Changelog
+
+0.0.4 - July 2, 2013
+
+- Added trim to output to remove the default less newline.
 
 ## Credits
 This plugin is based off of [play-stylus][play-stylus] and [play-sass][play-sass].
