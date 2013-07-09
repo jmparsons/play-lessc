@@ -8,15 +8,14 @@ import scala.sys.process._
 object LesscCompiler {
 
   def compile(lesscFile: File, opts: Seq[String]): (String, Option[String], Seq[File]) = {
-    val verbose = opts.filter { _ == "--verbose" }.length > 0
-    val options = opts.filter { o => (o != "rjs") && (o != "--verbose") }
+    val verbose = opts.contains("--verbose")
+    val options = opts.filter{ o => (o != "rjs") && (o != "--verbose") }.distinct
     try {
-      val cmd = (Seq("lessc") ++ options ++ Seq(lesscFile.getPath)).mkString(" ")
-      if (verbose)
-        println("+ " + cmd)
-      val cssOutput = captureOutput(cmd)
-      val compressedCssOutput = captureOutput((Seq("lessc -x") ++ options ++ Seq(lesscFile)).mkString(" "))
-      (cssOutput.trim, Some(compressedCssOutput.trim), Seq(lesscFile))
+      if (verbose) println("+ " + (Seq("lessc") ++ options ++ Seq(lesscFile)).mkString(" "))
+      val noMinOptions = options.filter{ o => (o != "-x") && (o != "--compress") && (o != "--yui-compress")}
+      val (cssOutput, dependencies) = captureOutput((Seq("lessc -line-numbers=comments") ++ noMinOptions ++ Seq(lesscFile)).mkString(" "))
+      val (compressedCssOutput, ignored) = captureOutput((Seq("lessc -x") ++ options ++ Seq(lesscFile)).mkString(" "))
+      (cssOutput, Some(compressedCssOutput), dependencies.map{ new File(_) })
     } catch {
       case e: LesscCompilationException => {
         throw AssetCompilationException(e.file.orElse(Some(lesscFile)), "Lessc compiler: " + e.message, Some(e.line), Some(e.column))
@@ -24,7 +23,9 @@ object LesscCompiler {
     }
   }
 
-  private def captureOutput(command: ProcessBuilder): String = {
+  private val DependencyLine = """^/\* line \d+, (.*) \*/$""".r
+
+  private def captureOutput(command: ProcessBuilder): (String, Seq[String]) = {
     val err = new StringBuilder
     val out = new StringBuilder
 
@@ -33,9 +34,12 @@ object LesscCompiler {
         (error: String) => err.append(error + "\n"))
 
     val process = command.run(capturer)
-    if (process.exitValue == 0)
-      out.toString
-    else
+    if (process.exitValue == 0) {
+      val dependencies = out.lines.collect {
+        case DependencyLine(f) => f
+      }
+      (out.mkString.trim, dependencies.toList.distinct)
+    } else
       throw new LesscCompilationException(err.toString)
   }
 

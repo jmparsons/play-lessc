@@ -11,7 +11,7 @@ Add the resolver and sbt plugin to your `project/pugins.sbt` file:
 
     resolvers += "JMParsons Releases" at "http://jmparsons.github.io/releases/"
 
-    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.0.4")
+    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.0.5")
 
 # Usage
 Import the plugin file into your Build.scala to override settings:
@@ -39,6 +39,11 @@ The `--verbose` option outputs each `lessc` command into the console:
 
 
 ## Changelog
+
+0.0.5 - July 8, 2013
+
+- Added compliling of dependencies after modifying an imported file.
+- Non minified files will include line comments by default.
 
 0.0.4 - July 2, 2013
 

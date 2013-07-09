@@ -8,7 +8,7 @@ object LesscPlugin extends Plugin {
 
   val lesscEntryPoints = SettingKey[PathFinder]("play-lessc-entry-points")
   val lesscOptions = SettingKey[Seq[String]]("play-lessc-options")
-  val LesscWatcher = play.Project.AssetsCompiler("lessc",
+  val LesscWatcher = AssetsCompiler("lessc",
     (_ ** "*.less"),
     lesscEntryPoints in Compile,
     { (name, min) => name.replace(".less", if (min) ".min.css" else ".css") },
