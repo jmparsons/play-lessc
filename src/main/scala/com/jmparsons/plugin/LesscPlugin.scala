@@ -16,7 +16,7 @@ object LesscPlugin extends Plugin {
     lesscOptions in Compile
   )
 
-  override lazy val settings = Seq(
+  lazy val lesscSettings = Seq(
     lesscEntryPoints <<= (sourceDirectory in Compile).apply(base => ((base / "assets" ** "*.less") --- base / "assets" ** "_*")),
     lesscOptions := Seq.empty[String],
     resourceGenerators in Compile <+= LesscWatcher
