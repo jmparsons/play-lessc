@@ -24,7 +24,7 @@ Set the default `lessEntryPoints` to `Nil` and put in your custom ones into less
       (base / "app" / "assets" / "stylesheets" * "*.less")
     )
 
-    lazy val main = play.Project(appName, appVersion, mainDeps).settings(
+    lazy val main = play.Project(appName, appVersion, mainDeps).settings(lesscSettings: _*).settings(
       lessEntryPoints := Nil,
       lesscEntryPoints in Compile <<= baseDirectory(customLessEntryPoints)
     )
@@ -39,6 +39,10 @@ The `--verbose` option outputs each `lessc` command into the console:
 
 
 ## Changelog
+
+0.0.6 - July 11, 2013
+
+- Made settings optional instead of an override. Requires importing into settings now.
 
 0.0.5 - July 8, 2013
 
