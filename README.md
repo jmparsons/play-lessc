@@ -11,7 +11,7 @@ Add the resolver and sbt plugin to your `project/pugins.sbt` file:
 
     resolvers += "JMParsons Releases" at "http://jmparsons.github.io/releases/"
 
-    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.0.5")
+    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.0.6")
 
 # Usage
 Import the plugin file into your Build.scala to override settings:
