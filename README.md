@@ -11,7 +11,7 @@ Add the resolver and sbt plugin to your `project/pugins.sbt` file:
 
     resolvers += "JMParsons Releases" at "http://jmparsons.github.io/releases/"
 
-    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.0.7")
+    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.0.8")
 
 # Usage
 Import the plugin file into your Build.scala to override settings:
@@ -40,7 +40,7 @@ The `--verbose` option outputs each `lessc` command into the console:
 
 ## Changelog
 
-0.0.7 - July 23, 2013
+0.0.8 - July 23, 2013
 
 - Fixed regex issue with dependencies having leading spaces.
 
