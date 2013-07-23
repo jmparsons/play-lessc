@@ -23,7 +23,7 @@ object LesscCompiler {
     }
   }
 
-  private val DependencyLine = """^/\* line \d+, (.*) \*/$""".r
+  private val DependencyLine = """^\s+/\* line \d+, (.*) \*/$""".r
 
   private def captureOutput(command: ProcessBuilder): (String, Seq[String]) = {
     val err = new StringBuilder
