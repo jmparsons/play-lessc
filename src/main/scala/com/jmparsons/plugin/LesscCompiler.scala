@@ -9,12 +9,15 @@ object LesscCompiler {
 
   def compile(lesscFile: File, opts: Seq[String]): (String, Option[String], Seq[File]) = {
     val verbose = opts.contains("--verbose")
-    val options = opts.filter{ o => (o != "rjs") && (o != "--verbose") }.distinct
+    val lessDirOption = opts.filter{o => (o.startsWith("dir="))}
+    val lessDir = if (!lessDirOption.isEmpty) lessDirOption.mkString("").stripPrefix("dir=").stripSuffix("/") + "/" else ""
+    val lessCmd = lessDir + "lessc"
+    val options = opts.filter{ o => (o != "rjs") && (o != "--verbose") && (!o.startsWith("dir=")) }.distinct
     try {
-      if (verbose) println("+ " + (Seq("lessc") ++ options ++ Seq(lesscFile)).mkString(" "))
+      if (verbose) println("+ " + (Seq(lessCmd) ++ options ++ Seq(lesscFile)).mkString(" "))
       val noMinOptions = options.filter{ o => (o != "-x") && (o != "--compress") && (o != "--yui-compress")}
-      val (cssOutput, dependencies) = captureOutput((Seq("lessc -line-numbers=comments") ++ noMinOptions ++ Seq(lesscFile)).mkString(" "))
-      val (compressedCssOutput, ignored) = captureOutput((Seq("lessc -x") ++ options ++ Seq(lesscFile)).mkString(" "))
+      val (cssOutput, dependencies) = captureOutput((Seq(lessCmd, "-line-numbers=comments") ++ noMinOptions ++ Seq(lesscFile)).mkString(" "))
+      val (compressedCssOutput, ignored) = captureOutput((Seq(lessCmd, "-x") ++ options ++ Seq(lesscFile)).mkString(" "))
       (cssOutput, Some(compressedCssOutput), dependencies.map{ new File(_) })
     } catch {
       case e: LesscCompilationException => {

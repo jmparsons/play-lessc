@@ -1,6 +1,6 @@
 name := "play-lessc"
 
-version := "0.0.8"
+version := "0.0.9"
 
 sbtPlugin := true
 
@@ -8,6 +8,6 @@ organization := "com.jmparsons"
 
 resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
 
-addSbtPlugin("play" % "sbt-plugin" % "2.1.2")
+addSbtPlugin("play" % "sbt-plugin" % "2.1.3")
 
 publishTo := Some(Resolver.file("file", new File( "/tmp/play-lessc" )))

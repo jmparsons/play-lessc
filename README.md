@@ -1,17 +1,23 @@
 # play-lessc
-This [sbt][sbt] plugin for [Play 2.1.x][play] provides the ability to use lessc command line tools to compile less through node instead of the default Rhino.
+This [sbt][sbt] plugin for [Play 2.1.x][play] provides the ability to use command line tools to compile less through node instead of Rhino.
 
 # Prerequisites
-This plugin requires lessc in this case installed globally through node.js and npm.
+This plugin requires lessc - [Less][less] command line program - which can be installed through node.js and npm:
 
-    npm install -g lessc
+Globally:
+
+    npm install -g less
+
+Locally:
+
+    npm install less
 
 # Installation
 Add the resolver and sbt plugin to your `project/pugins.sbt` file:
 
     resolvers += "JMParsons Releases" at "http://jmparsons.github.io/releases/"
 
-    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.0.8")
+    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.0.9")
 
 # Usage
 Import the plugin file into your Build.scala to override settings:
@@ -29,16 +35,25 @@ Set the default `lessEntryPoints` to `Nil` and put in your custom ones into less
       lesscEntryPoints in Compile <<= baseDirectory(customLessEntryPoints)
     )
 
-Less options can be passed in using `lesscOptions`:
+Less command line [options][lessoptions] can be passed in using `lesscOptions`:
 
-    lesscOptions in Compile := Seq("--no-color")
+    lesscOptions in Compile := Seq("--no-color", "--yui-compress")
 
 The `--verbose` option outputs each `lessc` command into the console:
 
     lesscOptions in Compile := Seq("--no-color", "--verbose")
 
+A directory value is required for a non global copy of lessc (trailing slash optional):
+
+    lesscOptions in Compile := Seq("dir=./node_modules/.bin")
 
 ## Changelog
+
+0.0.9 - August 31, 2013
+
+- Added fallback to Play's LessCompiler if the lessc command is not found.
+- New directory configuration option for a local copy of lessc.
+- Only the normal LessCompiler works on Heroku. The lessc command is not available at compile time even if using a multipack with installing node before scala.
 
 0.0.8 - July 23, 2013
 
@@ -67,3 +82,5 @@ MIT: <http://jmparsons.mit-license.org> - [@jmparsons](http://twitter.com/jmpars
 [play-stylus]: https://github.com/patiencelabs/play-stylus
 [play]: http://www.playframework.org/
 [sbt]: https://github.com/harrah/xsbt
+[less]: http://lesscss.org/
+[lessoptions]: https://github.com/less/less.js/wiki/Command-Line-Usage
