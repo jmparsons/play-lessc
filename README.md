@@ -1,8 +1,8 @@
 # play-lessc
-This [sbt][sbt] plugin for [Play 2.1.x][play] provides the ability to use command line tools to compile less through node instead of Rhino.
+This [sbt][sbt] plugin for [Play 2.1.x][play] provides the ability to use command line tools to compile less through Node instead of Rhino.
 
 # Prerequisites
-This plugin requires lessc - [Less][less] command line program - which can be installed through node.js and npm:
+This plugin requires lessc - [Less][less] command line program - which can be installed through Node.js and npm:
 
 Globally:
 
@@ -57,7 +57,7 @@ A directory value is required for a non global copy of lessc (trailing slash opt
 
 - Added fallback to Play's LessCompiler if the lessc command is not found.
 - New directory configuration option for a local copy of lessc.
-- Only the normal LessCompiler works on Heroku. The lessc command is not available at compile time even if using a multipack with installing node before scala.
+- Only the normal LessCompiler works on Heroku. The lessc command is not available at compile time even if using a multipack with installing Node before scala.
 
 0.0.8 - July 23, 2013
 
