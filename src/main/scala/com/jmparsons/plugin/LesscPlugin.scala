@@ -17,13 +17,13 @@ object LesscPlugin extends Plugin {
         val lessDirOption = options.filter{o => (o.startsWith("dir="))}
         val lessDir = if (!lessDirOption.isEmpty) lessDirOption.mkString("").stripPrefix("dir=").stripSuffix("/") + "/" else ""
         try {
-          val checkCmd = Seq("command", "-v", lessDir + "lessc").!!.trim
-          LesscCompiler.compile(file, options)
+          Seq(lessDir + "lessc", "-v").!!
+          LesscCompiler.compile(file, lessDir + "lessc", options)
         } catch {
-          case e: java.io.IOException => {
+          case e @ (_ : java.lang.RuntimeException | _ : java.io.IOException) => {
             try {
-              val checkWhich = Seq("which", lessDir + "lessc").!!.trim
-              LesscCompiler.compile(file, options)
+              Seq(lessDir + "lessc.cmd", "-v").!!
+              LesscCompiler.compile(file, lessDir + "lessc.cmd", options)
             } catch {
               case e @ (_ : java.lang.RuntimeException | _ : java.io.IOException) => play.core.less.LessCompiler.compile(file)
             }

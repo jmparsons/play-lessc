@@ -7,11 +7,8 @@ import scala.sys.process._
 
 object LesscCompiler {
 
-  def compile(lesscFile: File, opts: Seq[String]): (String, Option[String], Seq[File]) = {
+  def compile(lesscFile: File, lessCmd: String, opts: Seq[String]): (String, Option[String], Seq[File]) = {
     val verbose = opts.contains("--verbose")
-    val lessDirOption = opts.filter{o => (o.startsWith("dir="))}
-    val lessDir = if (!lessDirOption.isEmpty) lessDirOption.mkString("").stripPrefix("dir=").stripSuffix("/") + "/" else ""
-    val lessCmd = lessDir + "lessc"
     val options = opts.filter{ o => (o != "rjs") && (o != "--verbose") && (!o.startsWith("dir=")) }.distinct
     try {
       if (verbose) println("+ " + (Seq(lessCmd) ++ options ++ Seq(lesscFile)).mkString(" "))
@@ -33,8 +30,8 @@ object LesscCompiler {
     val out = new StringBuilder
 
     val capturer = ProcessLogger(
-        (output: String) => out.append(output + "\n"),
-        (error: String) => err.append(error + "\n"))
+      (output: String) => out.append(output + "\n"),
+      (error: String) => err.append(error + "\n"))
 
     val process = command.run(capturer)
     if (process.exitValue == 0) {

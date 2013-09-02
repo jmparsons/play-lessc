@@ -17,7 +17,7 @@ Add the resolver and sbt plugin to your `project/pugins.sbt` file:
 
     resolvers += "JMParsons Releases" at "http://jmparsons.github.io/releases/"
 
-    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.0.9")
+    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.1.0")
 
 # Usage
 Import the plugin file into your Build.scala to override settings:
@@ -45,9 +45,13 @@ The `--verbose` option outputs each `lessc` command into the console:
 
 A directory value is required for a non global copy of lessc (trailing slash optional):
 
-    lesscOptions in Compile := Seq("dir=./node_modules/.bin")
+    lesscOptions in Compile := Seq("dir=node_modules/.bin")
 
 ## Changelog
+
+0.1.0 - September 2, 2013
+
+- Windows works now with a global or local copy of lessc using lessc.cmd as a fallback.
 
 0.0.9 - August 31, 2013
 
