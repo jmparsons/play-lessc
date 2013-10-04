@@ -1,6 +1,6 @@
 package com.jmparsons.plugin
 
-import sbt.PlayExceptions.AssetCompilationException
+import play.PlayExceptions.AssetCompilationException
 import sbt.SettingKey
 import java.io.File
 import scala.sys.process._

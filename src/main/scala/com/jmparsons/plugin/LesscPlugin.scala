@@ -3,7 +3,6 @@ package com.jmparsons.plugin
 import sbt._
 import sbt.Keys._
 import play.Project._
-import scala.sys.process._
 
 object LesscPlugin extends Plugin {
 
