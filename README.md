@@ -19,6 +19,8 @@ Add the resolver and sbt plugin to your `project/plugins.sbt` file:
 
     addSbtPlugin("com.jmparsons" % "play-lessc" % "0.1.1")
 
+For Play 2.1, use version 0.1.0.
+
 # Usage
 Import the plugin file into your build file to override settings:
 
