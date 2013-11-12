@@ -13,18 +13,12 @@ Locally:
     npm install less
 
 # Installation
-Add the resolver and sbt plugin to your `project/plugins.sbt` file:
 
-    resolvers += "JMParsons Releases" at "http://jmparsons.github.io/releases/"
+Add the sbt plugin to your `project/plugins.sbt` file:
 
-    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.1.1")
-
-For Play 2.1, use version 0.1.0.
+    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.1.2")
 
 # Usage
-Import the plugin file into your build file to override settings:
-
-    import com.jmparsons.plugin.LesscPlugin._
 
 Set the default `lessEntryPoints` to `Nil` and put in your custom ones into lesscEntryPoints:
 
@@ -41,6 +35,8 @@ build.sbt example:
     lesscEntryPoints in Compile <<= baseDirectory(customLessEntryPoints)
 
 Build.scala example:
+
+    import com.jmparsons.plugin.LesscPlugin._
 
     lazy val main = play.Project(appName, appVersion, mainDeps).settings(lesscSettings: _*).settings(
       lessEntryPoints := Nil,
@@ -60,6 +56,10 @@ A directory value is required for a non global copy of lessc (trailing slash opt
     lesscOptions in Compile := Seq("dir=node_modules/.bin")
 
 ## Changelog
+
+0.1.2 - November 11, 2013
+
+- Now using Typesafe's community repository, removing the resolver dependency.
 
 0.1.1 - October 4, 2013
 
@@ -91,6 +91,16 @@ A directory value is required for a non global copy of lessc (trailing slash opt
 0.0.4 - July 2, 2013
 
 - Added trim to output to remove the default less newline.
+
+## Older Version Installation - 0.1.1 and older
+
+Add the resolver and sbt plugin to your project/plugins.sbt file:
+
+    resolvers += "JMParsons Releases" at "http://jmparsons.github.io/releases/"
+
+    addSbtPlugin("com.jmparsons" % "play-lessc" % "0.1.1")
+
+For Play 2.1, use version 0.1.0.
 
 ## Credits
 This plugin is based off of [play-stylus][play-stylus] and [play-sass][play-sass].
