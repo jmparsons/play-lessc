@@ -1,0 +1,11 @@
+@(message: String)
+
+@main("Lessc Test") {
+
+  <div id="main">
+    <h1>Content</h1>
+    <a href="@routes.Assets.at("stylesheets/styles.css")">CSS with Lessc</a><br>
+    <a href="@routes.Assets.at("stylesheets/styles.min.css")">CSS Minified with Lessc</a>
+  </div>
+
+}
