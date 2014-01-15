@@ -4,9 +4,9 @@ This [sbt][sbt] plugin for [Play][play] provides the ability to use command line
 # Performance
 This plugin was created to speed up [Less][less] compilation within [Play][play].
 
-Adding just [Twitter Bootstrap][bootstrap] less files or using [Lesshat][lesshat] mixins can make your applications take minutes to recompile.
+Adding [Twitter Bootstrap][bootstrap] less files or using [Lesshat][lesshat] mixins can make your applications take minutes to compile.
 
-This plugin helps tremendously speed up less compilation times by compiling less through Node instead of Rhino using Java.
+This plugin helps tremendously speed up your development by compiling less through Node instead of Rhino.
 
 # Prerequisites
 This plugin requires lessc - [Less][less] command line program - which can be installed through Node.js and npm:
