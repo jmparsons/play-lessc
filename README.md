@@ -1,5 +1,12 @@
 # play-lessc
-This [sbt][sbt] plugin for [Play][play] provides the ability to use command line tools to compile less through Node instead of Rhino.
+This [sbt][sbt] plugin for [Play][play] provides the ability to use command line tools to compile less through Node.
+
+# Performance
+This plugin was created to speed up [Less][less] compilation within [Play][play].
+
+Adding just [Twitter Bootstrap][bootstrap] less files or using [Lesshat][lesshat] mixins can make your applications take minutes to recompile.
+
+This plugin helps tremendously speed up less compilation times by compiling less through Node instead of Rhino using Java.
 
 # Prerequisites
 This plugin requires lessc - [Less][less] command line program - which can be installed through Node.js and npm:
@@ -108,6 +115,8 @@ This plugin is based off of [play-stylus][play-stylus] and [play-sass][play-sass
 ## License
 MIT: <http://jmparsons.mit-license.org> - [@jmparsons](http://twitter.com/jmparsons)
 
+[lesshat]: http://lesshat.com/
+[bootstrap]: http://getbootstrap.com/
 [play-sass]: https://github.com/jlitola/play-sass
 [play-stylus]: https://github.com/patiencelabs/play-stylus
 [play]: http://www.playframework.org/
