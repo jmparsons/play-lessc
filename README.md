@@ -1,5 +1,7 @@
 # play-lessc
-This [sbt][sbt] plugin for [Play][play] provides the ability to use command line tools to compile less through Node.
+This [sbt][sbt] plugin for [Play][play] 2.1.x and 2.2.x provides the ability to use command line tools to compile less through Node.
+
+For Play 2.3.x refer to [sbt-less](https://github.com/sbt/sbt-less).
 
 # Performance
 This plugin was created to speed up [Less][less] compilation within [Play][play].
