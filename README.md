@@ -52,7 +52,7 @@ Build.scala example:
       lesscEntryPoints in Compile <<= baseDirectory(customLessEntryPoints)
     )
 
-Less command line [options][lessoptions] can be passed in using `lesscOptions`:
+Less command line [options](http://lesscss.org/#using-less-command-line-usage) can be passed in using `lesscOptions`:
 
     lesscOptions in Compile := Seq("--no-color", "--yui-compress")
 
